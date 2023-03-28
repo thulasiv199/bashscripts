@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    environment{
+        myVar = "thulasi"
+    }
+    stages {
+        stage('checkout'){
+            steps{
+           git branch: 'main', url: 'https://github.com/thulasiv199/bashscripts.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh "sh array.sh"
+            }
+        }
+        stage('posttasks'){
+            steps{
+                sh "echo this is  program"
+            }
+        }
+        stage('printing environment variable'){
+            steps{
+                sh 'echo "this is my variable:$myVar"'
+            }
+        }
+    }
+}
+
+
